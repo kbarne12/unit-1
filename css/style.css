@@ -1,0 +1,7 @@
+main.playerHand {
+    align-content: center;
+}
+main.dealerHand{
+    display: grid;
+justify-content: center;
+}   
