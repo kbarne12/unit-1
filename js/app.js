@@ -61,10 +61,7 @@ function dealClick(){
 
 function render(pickedCards, pickedCardR, pickedCardD, pickedCardD2){
     if(playerHand.length === 2 && dealerHand.length === 2){
-        playerHandEl.classList.remove('outline')
-        playerHandEl2.classList.remove('outline')
-        dealerHandEl.classList.remove('outline')
-        dealerHandEl2.classList.remove('outline')
+        
     }
     playerHandEl.classList.add(pickedCards)
     playerHandEl2.classList.add(pickedCardR)
@@ -94,6 +91,18 @@ function addHit(hitCard){
         playerHitEl3.classList.add(hitCard[2])
      }
     }
+
+function hideCards(){
+    if(playerHand.length === 0 && dealerHand.length === 0){
+    document.getElementById('dealerHand').style.display='none'
+    document.getElementById('dealerHand2').style.display='none'
+    document.getElementById('dealerHand3').style.display='none'
+    document.getElementById('dealerHand4').style.display='none'
+    }
+    
+    }
+
+
 //reset button
 //turn
 // isWinner
