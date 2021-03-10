@@ -34,7 +34,7 @@ let dealerHandEl2 = document.getElementById('dealerHand2')
 
 /*----------------------------- Event Listeners -----------------------------*/
 dealBtn.addEventListener('click', dealCards)
-// hitBtn.addEventListener('click', hitClick)
+hitBtn.addEventListener('click', hitToPlayer)
 // stayBtn.addEventListener('click', stayFunc)
 
 
@@ -62,6 +62,7 @@ function shuffleArray(array) {
 
 
 function dealToPlayer() {
+    if(state.playerHand.length === 0)
     for (let i=0; i<2; i++) {
         drawnCard = currentDeck.pop();
         state.playerHand.push(drawnCard);
@@ -72,12 +73,22 @@ function dealToPlayer() {
  }
 //  how to stop button?
 function dealToDealer() {
+    if(state.dealerHand.length === 0)
     for (let i=0; i<2; i++) {
         drawnCard = currentDeck.pop();
         state.dealerHand.push(drawnCard);
         dealerHandEl.classList.add('card', state.dealerHand[0])
         dealerHandEl2.classList.add('card','back-blue', state.dealerHand[1])
     }console.log('dealer hand',state.dealerHand)
+}
+function hitToPlayer() {
+    if(state.playerHand.length === 2)
+    for (let i=0; i<1; i++) {
+        drawnCard = currentDeck.pop();
+        state.playerHand.push(drawnCard);
+        playerHitEl.classList.add('card', state.playerHand[2])
+    //stop after bust
+    }console.log(state.playerHand)
 }
 
 
