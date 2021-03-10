@@ -15,10 +15,12 @@ const cardVal = {
  }
 //variables-----------------------------------------------------------------------
 let currentDeck = state.deck;
+
 /*------------------------ Cached Element References ------------------------*/
-    let dealBtn = document.getElementById("btn")
+let dealBtn = document.getElementById("btn")
 let stayBtn = document.getElementById('stay')
 let hitBtn = document.getElementById('hit')
+let hitAgainBtn = document.getElementById('hitAgain')
 let playerHandEl = document.getElementById('playerHand')
 let playerHandEl2 = document.getElementById('playerHand2')
 let playerHitEl = document.getElementById('playerHit')
@@ -35,6 +37,7 @@ let dealerHandEl2 = document.getElementById('dealerHand2')
 /*----------------------------- Event Listeners -----------------------------*/
 dealBtn.addEventListener('click', dealCards)
 hitBtn.addEventListener('click', hitToPlayer)
+hitAgainBtn.addEventListener('click', hitToPlayer2)
 // stayBtn.addEventListener('click', stayFunc)
 
 
@@ -87,12 +90,18 @@ function hitToPlayer() {
         drawnCard = currentDeck.pop();
         state.playerHand.push(drawnCard);
         playerHitEl.classList.add('card', state.playerHand[2])
+
     //stop after bust
     }console.log(state.playerHand)
 }
-
-
-
+function hitToPlayer2(){
+    if(state.playerHand.length === 3)
+for (let i=0; i<1; i++) {
+    drawnCard = currentDeck.pop();
+    state.playerHand.push(drawnCard);
+    playerHitEl2.classList.add('card', state.playerHand[3])
+}
+}
 
 
 //reset button
