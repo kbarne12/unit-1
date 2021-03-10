@@ -97,4 +97,5 @@ function hitToPlayer() {
 
 //reset button
 //turn
+
 // isWinner
