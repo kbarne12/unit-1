@@ -43,14 +43,15 @@ dealBtn.addEventListener('click', dealCards)
 function dealCards(){
     shuffleCards()
     dealToPlayer()
+    dealToDealer()
     
 } 
 
 function shuffleCards() {
-    if(state.isFirstHand){
+    if(state.isFirstHand = true){
         shuffleArray(currentDeck);
         state.isFirstHand = false;
-    }console.log(currentDeck)
+    }console.log('current Deck',currentDeck)
 }
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -65,7 +66,18 @@ function dealToPlayer() {
         drawnCard = currentDeck.pop();
         state.playerHand.push(drawnCard);
         playerHandEl.classList.add('card', state.playerHand[0])
-    } console.log(state.playerHand)
+        playerHandEl2.classList.add('card', state.playerHand[1])
+        state.isFirstHand = false
+    } console.log('player hand', state.playerHand)
+ }
+//  how to stop button?
+function dealToDealer() {
+    for (let i=0; i<2; i++) {
+        drawnCard = currentDeck.pop();
+        state.dealerHand.push(drawnCard);
+        dealerHandEl.classList.add('card', state.dealerHand[0])
+        dealerHandEl2.classList.add('card','back-blue', state.dealerHand[1])
+    }console.log('dealer hand',state.dealerHand)
 }
 
 
