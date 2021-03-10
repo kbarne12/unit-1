@@ -17,15 +17,15 @@ const cardVal = {
 let currentDeck = state.deck;
 /*------------------------ Cached Element References ------------------------*/
     let dealBtn = document.getElementById("btn")
-// let stayBtn = document.getElementById('stay')
-// let hitBtn = document.getElementById('hit')
-// let playerHandEl = document.getElementById('playerHand')
-// let playerHandEl2 = document.getElementById('playerHand2')
-// let playerHitEl = document.getElementById('playerHit')
-// let playerHitEl2 = document.getElementById('playerHit2')
-// let playerHitEl3 = document.getElementById('playerHit3')
-// let dealerHandEl = document.getElementById('dealerHand')
-// let dealerHandEl2 = document.getElementById('dealerHand2')
+let stayBtn = document.getElementById('stay')
+let hitBtn = document.getElementById('hit')
+let playerHandEl = document.getElementById('playerHand')
+let playerHandEl2 = document.getElementById('playerHand2')
+let playerHitEl = document.getElementById('playerHit')
+let playerHitEl2 = document.getElementById('playerHit2')
+let playerHitEl3 = document.getElementById('playerHit3')
+let dealerHandEl = document.getElementById('dealerHand')
+let dealerHandEl2 = document.getElementById('dealerHand2')
 
 
 
@@ -40,7 +40,13 @@ dealBtn.addEventListener('click', dealCards)
 
 
 /*-------------------------------- Functions --------------------------------*/
-function dealCards() {
+function dealCards(){
+    shuffleCards()
+    dealToPlayer()
+    
+} 
+
+function shuffleCards() {
     if(state.isFirstHand){
         shuffleArray(currentDeck);
         state.isFirstHand = false;
@@ -58,7 +64,8 @@ function dealToPlayer() {
     for (let i=0; i<2; i++) {
         drawnCard = currentDeck.pop();
         state.playerHand.push(drawnCard);
-    }
+        playerHandEl.classList.add('card', state.playerHand[0])
+    } console.log(state.playerHand)
 }
 
 
