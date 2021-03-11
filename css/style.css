@@ -4,4 +4,7 @@ main.playerHand {
 main.dealerHand{
     display: grid;
 justify-content: center;
+}
+#hitAgain{
+   display: none; 
 }   

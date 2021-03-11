@@ -11,10 +11,15 @@ const cardVal = {
     stay: false,
     bust: false,
     hitCard: [],
-    drawnCard: []
+    drawnCard: [],
+    playerCount: 0,
+    dealerCount: 0
+
  }
 //variables-----------------------------------------------------------------------
 let currentDeck = state.deck;
+let num
+
 
 /*------------------------ Cached Element References ------------------------*/
 let dealBtn = document.getElementById("btn")
@@ -36,7 +41,15 @@ let dealerHandEl2 = document.getElementById('dealerHand2')
 
 /*----------------------------- Event Listeners -----------------------------*/
 dealBtn.addEventListener('click', dealCards)
-hitBtn.addEventListener('click', hitToPlayer)
+hitBtn.addEventListener('click', ()=>{
+    if(state.playerHand.length === 2)
+    for (let i=0; i<1; i++) {
+        drawnCard = currentDeck.pop();
+        state.playerHand.push(drawnCard);
+        playerHitEl.classList.add('card', state.playerHand[2])
+    
+     }
+})
 hitAgainBtn.addEventListener('click', hitToPlayer2)
 // stayBtn.addEventListener('click', stayFunc)
 
@@ -73,6 +86,7 @@ function dealToPlayer() {
         playerHandEl2.classList.add('card', state.playerHand[1])
         state.isFirstHand = false
     } console.log('player hand', state.playerHand)
+    count()
  }
 //  how to stop button?
 function dealToDealer() {
@@ -84,16 +98,6 @@ function dealToDealer() {
         dealerHandEl2.classList.add('card','back-blue', state.dealerHand[1])
     }console.log('dealer hand',state.dealerHand)
 }
-function hitToPlayer() {
-    if(state.playerHand.length === 2)
-    for (let i=0; i<1; i++) {
-        drawnCard = currentDeck.pop();
-        state.playerHand.push(drawnCard);
-        playerHitEl.classList.add('card', state.playerHand[2])
-
-    //stop after bust
-    }console.log(state.playerHand)
-}
 function hitToPlayer2(){
     if(state.playerHand.length === 3)
 for (let i=0; i<1; i++) {
@@ -102,7 +106,12 @@ for (let i=0; i<1; i++) {
     playerHitEl2.classList.add('card', state.playerHand[3])
 }
 }
-
+function count(){
+    num = parseInt(playerHandEl.value)
+    
+}
+console.log('player count', num)
+count()
 
 //reset button
 //turn
