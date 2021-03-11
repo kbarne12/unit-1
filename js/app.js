@@ -8,6 +8,8 @@ const cardVal = {
     isFirstHand: true,
     dealerHand: [],
     playerHand: [],
+    dealerHandNumVal: [],
+    playerHandNumVal: [],
     stay: false,
     bust: false,
     hitCard: [],
@@ -18,8 +20,9 @@ const cardVal = {
  }
 //variables-----------------------------------------------------------------------
 let currentDeck = state.deck;
-let num = parseInt(cardVal.dK) 
-console.log(num)
+let playerPoints = cardLookup(state.playerHandNumVal.reduce(a, b) => a+ b , 0)
+console.log(playerPoints)
+
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -45,6 +48,7 @@ hitBtn.addEventListener('click', ()=>{
     if (state.playerHand.length < 5) {
         drawnCard = currentDeck.pop();
         state.playerHand.push(drawnCard);
+        state.playerHandNumVal.push(drawnCard);
         console.log(state.playerHand);
     }
     if (state.playerHand.length === 3)
@@ -97,24 +101,24 @@ function cardLookup(card) {
     }    
     return cardValue;
 }
-function dealCards(){
-    shuffleCards()
-    dealToPlayer()
-    dealToDealer()
-    
-} 
+
+function convertToNum(card) {
+    const value = cardLookup(card);
+    return value;
+}
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
 
 function shuffleCards() {
     if(state.isFirstHand = true){
         shuffleArray(currentDeck);
         state.isFirstHand = false;
     }console.log('current Deck',currentDeck)
-}
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
 }
 
 
@@ -123,6 +127,7 @@ function dealToPlayer() {
     for (let i=0; i<2; i++) {
         drawnCard = currentDeck.pop();
         state.playerHand.push(drawnCard);
+        state.playerHandNumVal.push(drawnCard);
         playerHandEl.classList.add('card', state.playerHand[0])
         playerHandEl2.classList.add('card', state.playerHand[1])
         state.isFirstHand = false
@@ -139,6 +144,13 @@ function dealToDealer() {
         dealerHandEl2.classList.add('card','back-blue', state.dealerHand[1])
     }console.log('dealer hand',state.dealerHand)
 }
+function dealCards(){
+    shuffleCards()
+    dealToPlayer()
+    dealToDealer()
+    
+} 
+console.log('playerHandNumVal', state.playerHandNumVal)
 
 //reset button
 //turn
