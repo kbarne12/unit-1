@@ -4,7 +4,7 @@ const cardVal = {
  
  }
  const state = {
-    deck: ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"],
+    deck: ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02","dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02","dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02","dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02","dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"],
     isFirstHand: true,
     dealerHand: [],
     playerHand: [],
@@ -18,14 +18,14 @@ const cardVal = {
  }
 //variables-----------------------------------------------------------------------
 let currentDeck = state.deck;
-let num
+let num = parseInt(cardVal.dK) 
+console.log(num)
 
 
 /*------------------------ Cached Element References ------------------------*/
-let dealBtn = document.getElementById("btn")
+let dealBtn = document.getElementById('btn')
 let stayBtn = document.getElementById('stay')
 let hitBtn = document.getElementById('hit')
-let hitAgainBtn = document.getElementById('hitAgain')
 let playerHandEl = document.getElementById('playerHand')
 let playerHandEl2 = document.getElementById('playerHand2')
 let playerHitEl = document.getElementById('playerHit')
@@ -42,20 +42,61 @@ let dealerHandEl2 = document.getElementById('dealerHand2')
 /*----------------------------- Event Listeners -----------------------------*/
 dealBtn.addEventListener('click', dealCards)
 hitBtn.addEventListener('click', ()=>{
-    if(state.playerHand.length === 2)
-    for (let i=0; i<1; i++) {
+    if (state.playerHand.length < 5) {
         drawnCard = currentDeck.pop();
         state.playerHand.push(drawnCard);
+        console.log(state.playerHand);
+    }
+    if (state.playerHand.length === 3)
         playerHitEl.classList.add('card', state.playerHand[2])
-    
-     }
+    if (state.playerHand.length === 4)
+        playerHitEl2.classList.add('card', state.playerHand[3])
+    if (state.playerHand.length === 5)
+        playerHitEl3.classList.add('card', state.playerHand[4])
 })
-hitAgainBtn.addEventListener('click', hitToPlayer2)
+
 // stayBtn.addEventListener('click', stayFunc)
 
 
 
 /*-------------------------------- Functions --------------------------------*/
+function cardLookup(card) {
+    let cardValue;
+    if (card === "dA" || card === "hA" || card ==="cA" || card === "sA"){
+        cardValue = 11;
+    }
+    if (card === "dQ" || card === "hQ" || card === "cQ" || card === "sQ" ||
+        card === "dK" || card === "hK" || card === "cK" || card === "sK" ||
+        card === "dJ" || card === "hJ" || card === "cJ" || card === "sJ" ||
+        card === "d10" || card === "h10" || card === "c10" || card === "s10"){
+        cardValue = 10;
+    }
+    if (card === "d09" || card === "h09" || card ==="c09" || card === "s09"){
+        cardValue = 9;
+    }
+    if (card === "d08" || card === "h08" || card ==="c08" || card === "s08"){
+        cardValue = 8;
+    }
+    if (card === "d07" || card === "h07" || card ==="c07" || card === "s07"){
+        cardValue = 7;
+    }
+    if (card === "d06" || card === "h06" || card ==="c06" || card === "s06"){
+        cardValue = 6;
+    }
+    if (card === "d05" || card === "h05" || card ==="c05" || card === "s05"){
+        cardValue = 5;
+    }
+    if (card === "d04" || card === "h04" || card ==="c04" || card === "s04"){
+        cardValue = 4;
+    }
+    if (card === "d03" || card === "h03" || card ==="c03" || card === "s03"){
+        cardValue = 3;
+    }
+    if (card === "d02" || card === "h02" || card ==="c02" || card === "s02"){
+        cardValue = 2;
+    }    
+    return cardValue;
+}
 function dealCards(){
     shuffleCards()
     dealToPlayer()
@@ -86,7 +127,7 @@ function dealToPlayer() {
         playerHandEl2.classList.add('card', state.playerHand[1])
         state.isFirstHand = false
     } console.log('player hand', state.playerHand)
-    count()
+    
  }
 //  how to stop button?
 function dealToDealer() {
@@ -98,20 +139,6 @@ function dealToDealer() {
         dealerHandEl2.classList.add('card','back-blue', state.dealerHand[1])
     }console.log('dealer hand',state.dealerHand)
 }
-function hitToPlayer2(){
-    if(state.playerHand.length === 3)
-for (let i=0; i<1; i++) {
-    drawnCard = currentDeck.pop();
-    state.playerHand.push(drawnCard);
-    playerHitEl2.classList.add('card', state.playerHand[3])
-}
-}
-function count(){
-    num = parseInt(playerHandEl.value)
-    
-}
-console.log('player count', num)
-count()
 
 //reset button
 //turn
