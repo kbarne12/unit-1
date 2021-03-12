@@ -72,10 +72,15 @@ function check(array){
      for(let i=0; i < array.length; i++){
         cardLookup(array[i])
         
-     } 
-     
-// Now we are getting the array of num values
-} console.log(state.playerHandNumVal)
+     }
+     for(let i=0; i<state.playerHandNumVal.length; i++){
+        playerTotal += state.playerHandNumVal[i]
+    }
+      console.log(playerTotal)
+      //compare playertotal to dealertotal
+   
+
+} 
 
 function cardLookup(card) {
     console.log(card)
@@ -123,8 +128,11 @@ function cardLookup(card) {
         cardValue = 2; 
         console.log(cardValue)
     }   
-    state.playerHandNumVal.push(cardValue) 
-    playerTotal = state.playerHandNumVal[0] + state.playerHandNumVal[1] + state.playerHandNumVal[2];
+    state.playerHandNumVal.push(cardValue)
+    console.log(state.playerHandNumVal.length)
+    //
+
+    //playerTotal = state.playerHandNumVal[0] + state.playerHandNumVal[1] + state.playerHandNumVal[2];
     console.log('player total', playerTotal)
    
     //return cardValue;
