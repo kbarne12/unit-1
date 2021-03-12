@@ -20,8 +20,7 @@ const cardVal = {
  }
 //variables-----------------------------------------------------------------------
 let currentDeck = state.deck;
-let playerPoints = cardLookup(state.playerHandNumVal.reduce(a, b) => a+ b , 0)
-console.log(playerPoints)
+let playerPoints;
 
 
 
@@ -50,7 +49,9 @@ hitBtn.addEventListener('click', ()=>{
         state.playerHand.push(drawnCard);
         state.playerHandNumVal.push(drawnCard);
         console.log(state.playerHand);
+        check(state.playerHand)
     }
+
     if (state.playerHand.length === 3)
         playerHitEl.classList.add('card', state.playerHand[2])
     if (state.playerHand.length === 4)
@@ -64,7 +65,14 @@ hitBtn.addEventListener('click', ()=>{
 
 
 /*-------------------------------- Functions --------------------------------*/
+function check(array){ 
+    console.log(array)
+    // for(let i=0; i < array.length; i++)
+// return 
+} 
+
 function cardLookup(card) {
+    console.log(card)
     let cardValue;
     if (card === "dA" || card === "hA" || card ==="cA" || card === "sA"){
         cardValue = 11;
