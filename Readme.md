@@ -8,8 +8,10 @@ At the start of a Blackjack game, the players and the dealer receive two cards e
 
 The house advantage of this game is derived from several rules that favour the dealer. The most significant of these is that the player must act before the dealer, allowing the player to bust and lose their bet before the dealer plays.
 
-![This is a alt text.](https://i.imgur.com/cQa2miz.png)
+
 ## Images
+![This is a alt text.](https://i.imgur.com/cQa2miz.png)
+![This is a alt text.](https://i.imgur.com/vHvQVvk.jpg)
 
 ### Technologies Used: 
 1. HTML5
