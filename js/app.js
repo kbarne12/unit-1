@@ -21,6 +21,7 @@ const cardVal = {
 //variables-----------------------------------------------------------------------
 let currentDeck = state.deck;
 let playerPoints;
+let total = 0;
 
 
 
@@ -47,8 +48,8 @@ hitBtn.addEventListener('click', ()=>{
     if (state.playerHand.length < 5) {
         drawnCard = currentDeck.pop();
         state.playerHand.push(drawnCard);
-        state.playerHandNumVal.push(drawnCard);
-        console.log(state.playerHand);
+        //state.playerHandNumVal.push(drawnCard);
+        console.log('playerHand',state.playerHand);
         check(state.playerHand)
     }
 
@@ -67,47 +68,63 @@ hitBtn.addEventListener('click', ()=>{
 /*-------------------------------- Functions --------------------------------*/
 function check(array){ 
     console.log(array)
-    // for(let i=0; i < array.length; i++)
-// return 
-} 
+    
+     for(let i=0; i < array.length; i++){
+        cardLookup(array[i])
+        
+     } 
+     
+// Now we are getting the array of num values
+} console.log(state.playerHandNumVal)
 
 function cardLookup(card) {
     console.log(card)
     let cardValue;
     if (card === "dA" || card === "hA" || card ==="cA" || card === "sA"){
         cardValue = 11;
+        console.log(cardValue)
     }
     if (card === "dQ" || card === "hQ" || card === "cQ" || card === "sQ" ||
         card === "dK" || card === "hK" || card === "cK" || card === "sK" ||
         card === "dJ" || card === "hJ" || card === "cJ" || card === "sJ" ||
         card === "d10" || card === "h10" || card === "c10" || card === "s10"){
         cardValue = 10;
+        console.log(cardValue)
     }
     if (card === "d09" || card === "h09" || card ==="c09" || card === "s09"){
         cardValue = 9;
+        console.log(cardValue)
     }
     if (card === "d08" || card === "h08" || card ==="c08" || card === "s08"){
         cardValue = 8;
+        console.log(cardValue)
     }
     if (card === "d07" || card === "h07" || card ==="c07" || card === "s07"){
         cardValue = 7;
+        console.log(cardValue)
     }
     if (card === "d06" || card === "h06" || card ==="c06" || card === "s06"){
         cardValue = 6;
+        console.log(cardValue)
     }
     if (card === "d05" || card === "h05" || card ==="c05" || card === "s05"){
         cardValue = 5;
+        console.log(cardValue)
     }
     if (card === "d04" || card === "h04" || card ==="c04" || card === "s04"){
         cardValue = 4;
+        console.log(cardValue)
     }
     if (card === "d03" || card === "h03" || card ==="c03" || card === "s03"){
         cardValue = 3;
+        console.log(cardValue)
     }
     if (card === "d02" || card === "h02" || card ==="c02" || card === "s02"){
-        cardValue = 2;
-    }    
-    return cardValue;
+        cardValue = 2; 
+        console.log(cardValue)
+    }   
+    state.playerHandNumVal.push(cardValue) 
+    //return cardValue;
 }
 
 function convertToNum(card) {
@@ -135,7 +152,7 @@ function dealToPlayer() {
     for (let i=0; i<2; i++) {
         drawnCard = currentDeck.pop();
         state.playerHand.push(drawnCard);
-        state.playerHandNumVal.push(drawnCard);
+        //state.playerHandNumVal.push(drawnCard);
         playerHandEl.classList.add('card', state.playerHand[0])
         playerHandEl2.classList.add('card', state.playerHand[1])
         state.isFirstHand = false
