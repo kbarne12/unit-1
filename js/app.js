@@ -21,7 +21,7 @@ const cardVal = {
 //variables-----------------------------------------------------------------------
 let currentDeck = state.deck;
 let playerPoints;
-let total = 0;
+let playerTotal = 0;
 
 
 
@@ -124,13 +124,12 @@ function cardLookup(card) {
         console.log(cardValue)
     }   
     state.playerHandNumVal.push(cardValue) 
+    playerTotal = state.playerHandNumVal[0] + state.playerHandNumVal[1] + state.playerHandNumVal[2];
+    console.log('player total', playerTotal)
+   
     //return cardValue;
 }
 
-function convertToNum(card) {
-    const value = cardLookup(card);
-    return value;
-}
 
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
