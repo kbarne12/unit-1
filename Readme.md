@@ -22,3 +22,6 @@ The house advantage of this game is derived from several rules that favour the d
 6. GitHub
 
 ### Future Enhancement
+Ability to Bet
+Sound and animation
+Multi player
