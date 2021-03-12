@@ -1,10 +1,14 @@
-main.playerHand {
-    align-content: center;
+body {
+    display:grid;
+    justify-content:grid;
+     
 }
-main.dealerHand{
-    display: grid;
-justify-content: center;
+#dealer {
+    justify-content: center;
+    align-items:center;
+    
 }
-#hitAgain{
-   display: none; 
-}   
+ 
+
+
+ 

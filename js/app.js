@@ -1,26 +1,21 @@
 //Constances--------------------------------------------------------------------
-const cardVal = {
-    "dK": 10, "dQ": 10, "dJ": 10,"d10": 10,"d09": 9,"d08": 8,"d07": 7,"d06": 6,"d05": 5,"d04": 4,"d03": 3,"d02": 2,"hA": 0,"hQ": 10,"hK": 10,"hJ": 10,"h10": 10,"h09": 9,"h08": 8,"h07": 7,"h06": 6,"h05": 5,"h04": 4,"h03": 3,"h02": 2,"cA": 0,"cQ": 10,"cK": 10,"cJ": 10,"c10": 10,"c09": 9,"c08": 8,"c07": 7,"c06": 6,"c05": 5,"c04": 4,"c03": 3,"c02": 2,"sA": 0,"sQ": 10,"sK": 10,"sJ": 10,"s10": 10,"s09": 9,"s08": 8,"s07": 7,"s06": 6,"s05": 5,"s04": 4,"s03": 3,"s02": 2
- 
- }
  const state = {
+     
     deck: ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02","dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02","dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02","dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02","dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"],
     isFirstHand: true,
-    dealerHand: [],
+    dealerHand:[],
     playerHand: [],
     dealerHandNumVal: [],
     playerHandNumVal: [],
-    stay: false,
-    bust: false,
     hitCard: [],
     drawnCard: [],
     playerCount: 0,
-    dealerCount: 0
+    dealerCount: 0,
+    bust: false
 
  }
 //variables-----------------------------------------------------------------------
 let currentDeck = state.deck;
-let playerPoints;
 let playerTotal = 0;
 
 
@@ -36,6 +31,7 @@ let playerHitEl2 = document.getElementById('playerHit2')
 let playerHitEl3 = document.getElementById('playerHit3')
 let dealerHandEl = document.getElementById('dealerHand')
 let dealerHandEl2 = document.getElementById('dealerHand2')
+let playerMessage = document.getElementById('playerMessage')
 
 
 
@@ -48,24 +44,64 @@ hitBtn.addEventListener('click', ()=>{
     if (state.playerHand.length < 5) {
         drawnCard = currentDeck.pop();
         state.playerHand.push(drawnCard);
-        //state.playerHandNumVal.push(drawnCard);
         console.log('playerHand',state.playerHand);
         check(state.playerHand)
+        console.log(playerTotal)
+        
+    
     }
-
     if (state.playerHand.length === 3)
+        busted()
         playerHitEl.classList.add('card', state.playerHand[2])
     if (state.playerHand.length === 4)
+    
         playerHitEl2.classList.add('card', state.playerHand[3])
     if (state.playerHand.length === 5)
+    
         playerHitEl3.classList.add('card', state.playerHand[4])
 })
 
-// stayBtn.addEventListener('click', stayFunc)
-
-
+ 
 
 /*-------------------------------- Functions --------------------------------*/
+function reset(){
+    if(state.bust = true){
+        state.isFirstHand = true,
+        state.dealerHand =[],
+        state.playerHand = [],
+        state.dealerHandNumVal = [],
+        state.playerHandNumVal = [],
+        state.hitCard = [],
+        state.drawnCard = [],
+        state.playerCount = 0,
+        state.dealerCount = 0,
+        state.bust = false
+        playerHandEl = document.getElementById('playerHand')
+        playerHandEl2 = document.getElementById('playerHand2')
+        playerHitEl = document.getElementById('playerHit')
+        playerHitEl2 = document.getElementById('playerHit2')
+        playerHitEl3 = document.getElementById('playerHit3')
+        dealerHandEl = document.getElementById('dealerHand')
+        dealerHandEl2 = document.getElementById('dealerHand2')
+        playerMessage = document.getElementById('playerMessage')
+        drawnCard 
+        playerHandEl.classList.remove('card')
+        playerHandEl2.classList.remove('card')
+        playerHitEl.classList.remove('card', 'outline')
+        playerHitEl2.classList.remove('card','outline')
+        playerHitEl3.classList.remove('card','outline')
+    }
+
+
+}
+function busted(){
+    if(playerTotal > 21){
+        playerMessage.innerText = "Busted!"
+        reset()
+    
+    }
+}
+
 function check(array){ 
     console.log(array)
     
@@ -76,7 +112,7 @@ function check(array){
      for(let i=0; i<state.playerHandNumVal.length; i++){
         playerTotal += state.playerHandNumVal[i]
     }
-      console.log(playerTotal)
+      
       //compare playertotal to dealertotal
    
 
@@ -85,10 +121,12 @@ function check(array){
 function cardLookup(card) {
     console.log(card)
     let cardValue;
-    if (card === "dA" || card === "hA" || card ==="cA" || card === "sA"){
+    if (card === "dA"  || card === "hA"  || card ==="cA"  || card === "sA" ){
         cardValue = 11;
         console.log(cardValue)
     }
+    
+        console.log(cardValue)
     if (card === "dQ" || card === "hQ" || card === "cQ" || card === "sQ" ||
         card === "dK" || card === "hK" || card === "cK" || card === "sK" ||
         card === "dJ" || card === "hJ" || card === "cJ" || card === "sJ" ||
@@ -130,13 +168,9 @@ function cardLookup(card) {
     }   
     state.playerHandNumVal.push(cardValue)
     console.log(state.playerHandNumVal.length)
-    //
-
-    //playerTotal = state.playerHandNumVal[0] + state.playerHandNumVal[1] + state.playerHandNumVal[2];
-    console.log('player total', playerTotal)
-   
-    //return cardValue;
+       
 }
+
 
 
 function shuffleArray(array) {
@@ -166,7 +200,7 @@ function dealToPlayer() {
     } console.log('player hand', state.playerHand)
     
  }
-//  how to stop button?
+
 function dealToDealer() {
     if(state.dealerHand.length === 0)
     for (let i=0; i<2; i++) {
@@ -180,11 +214,4 @@ function dealCards(){
     shuffleCards()
     dealToPlayer()
     dealToDealer()
-    
-} 
-console.log('playerHandNumVal', state.playerHandNumVal)
-
-//reset button
-//turn
-
-// isWinner
+}
