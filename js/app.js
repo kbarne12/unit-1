@@ -1,6 +1,5 @@
 //Constances--------------------------------------------------------------------
- const state = {
-     
+const state = {
     deck: ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02","dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02","dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02","dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02","dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"],
     isFirstHand: true,
     dealerHand:[],
@@ -15,7 +14,7 @@
     bust: false,
     draw: false
 
- }
+}
 //variables-----------------------------------------------------------------------
 let currentDeck = state.deck;
 let playerTotal = 0;
@@ -58,22 +57,24 @@ hitBtn.addEventListener('click', ()=>{
         playerHitEl.classList.add('card', state.playerHand[2])
         busted()
     if (state.playerHand.length === 4)
-     playerHitEl2.classList.add('card', state.playerHand[3])
-     busted()
+    playerHitEl2.classList.add('card', state.playerHand[3])
+        busted()
     if (state.playerHand.length === 5)
     playerHitEl3.classList.add('card', state.playerHand[4])
-    busted()
+        busted()
 })
 
 stayBtn.addEventListener('click', ()=>{
     dealerHandEl2.classList.remove('back-blue')
+    dealerCheck(state.dealerHand)
     if( dealerTotal < 16){
         draw()
-    }dealerCheck(state.dealerHand)
+    }
     busted()
     isWinner()
     
     
+    console.log(dealerTotal)
 })
 
 /*-------------------------------- Functions --------------------------------*/
@@ -88,7 +89,8 @@ function shuffleCards() {
     if(state.isFirstHand = true){
         shuffleArray(currentDeck);
         state.isFirstHand = false;
-    }console.log('current Deck',currentDeck)
+    }
+    console.log('current Deck',currentDeck)
 }
 
 function dealToPlayer() {
@@ -96,13 +98,15 @@ function dealToPlayer() {
     for (let i=0; i<2; i++) {
         drawnCard = currentDeck.pop();
         state.playerHand.push(drawnCard);
-        //state.playerHandNumVal.push(drawnCard);
+        // state.playerHandNumVal.push(drawnCard);
         playerHandEl.classList.add('card', state.playerHand[0])
         playerHandEl2.classList.add('card', state.playerHand[1])
         state.isFirstHand = false
-    } console.log('player hand', state.playerHand)
+    } 
+    console.log('player hand', state.playerHand)
+    console.log(playerTotal)
     
- }
+}
 
 function dealToDealer() {
     if(state.dealerHand.length === 0)
@@ -111,16 +115,19 @@ function dealToDealer() {
         state.dealerHand.push(drawnCard);
         dealerHandEl.classList.add('card', state.dealerHand[0])
         dealerHandEl2.classList.add('card','back-blue', state.dealerHand[1]) 
-         
-    } dealerCheck(state.dealerHand, state.dealerHand2)
-    
+        
+    }  
+    console.log(state.dealerHand)
+    // dealerCheck(state.dealerHand)
 
-} 
+}
+
 
 function dealCards(){
     shuffleCards()
     dealToPlayer()
     dealToDealer()
+    
 }
 
 function playerCardLookup(card) {
@@ -172,21 +179,17 @@ function playerCardLookup(card) {
         console.log(cardValue)
     }   
     state.playerHandNumVal.push(cardValue)
-    console.log(state.playerHandNumVal.length)
-       
-}
-function playerCheck(array){ 
-    console.log(array)
     
-     for(let i=0; i < array.length; i++){
-        playerCardLookup(array[i])   
-     }
-     
-     for(let i=0; i<state.playerHandNumVal.length; i++){
+}console.log('playerHandNumVal', state.playerHandNumVal.length)
+
+function playerCheck(array){ 
+    for(let i=0; i < array.length; i++){
+    playerCardLookup(array[i])   
+    }
+    for(let i=0; i<state.playerHandNumVal.length; i++){
         playerTotal += state.playerHandNumVal[i] 
     }
-      //compare playertotal to dealertotal
-} 
+} playerCheck(state.playerHandNumVal)
 
 function dealerCardLookup(card) {
     console.log(card)
@@ -238,29 +241,28 @@ function dealerCardLookup(card) {
     }   
     state.dealerHandNumVal.push(cardValue)
     console.log(state.dealerHandNumVal)
-    console.log(state.dealerHand)
-       
+    console.log(state.dealerHand) 
 }
 
 function dealerCheck(array){ 
     console.log(array)
     
-     for(let i=0; i < array.length; i++){
-        dealerCardLookup(array[i])   
-     }
-     
-     for(let i=0; i<state.dealerHandNumVal.length; i++){
+    for(let i=0; i < array.length; i++){
+        dealerCardLookup(array[i])  
+        console.log( dealerCardLookup(array[i]) ) 
+    }
+    for(let i=0; i<state.dealerHandNumVal.length; i++){
         dealerTotal += state.dealerHandNumVal[i]
-    } console.log('dealerTotal', dealerTotal)
-      //compare playertotal to dealertotal
-} 
+    } console.log('dealerTotal', dealerTotal, state.dealerHandNumVal)
+}
 
 function draw(){
-    dealerDrawnCard = currentDeck.pop(0)
-    state.dealerHand2.push(dealerDrawnCard)
-    dealerHandEl3.classList.add('card', state.dealerHand2[0])
+    dealerDrawnCard = currentDeck.pop()
+    state.dealerHand.push(dealerDrawnCard)
+    dealerHandEl3.classList.add('card', state.dealerHand2)
+    
+}console.log(dealerDrawnCard)
 
-}
 function isWinner(){
     if(playerTotal >= 21 && dealerTotal >= 21){
         winner()
@@ -291,32 +293,32 @@ function busted(){
         
     }
 }
-function reset(){
+// function reset(){
 
-        state.isFirstHand = true,
-        state.dealerHand =[],
-        state.playerHand = [],
-        state.dealerHandNumVal = [],
-        state.playerHandNumVal = [],
-        state.hitCard = [],
-        state.drawnCard = [],
-        state.playerCount = 0,
-        state.dealerCount = 0,
-        state.bust = false
-        playerHandEl = document.getElementById('playerHand')
-        playerHandEl2 = document.getElementById('playerHand2')
-        playerHitEl = document.getElementById('playerHit')
-        playerHitEl2 = document.getElementById('playerHit2')
-        playerHitEl3 = document.getElementById('playerHit3')
-        dealerHandEl = document.getElementById('dealerHand')
-        dealerHandEl2 = document.getElementById('dealerHand2')
-        playerMessage = document.getElementById('playerMessage')
-        drawnCard 
-        dealerHandEl3 = document.getElementById('dealerHand3')
-        dealerHandEl4 = document.getElementById('dealerHand4')
-        playerMessage = document.getElementById('playerMessage')
+//         state.isFirstHand = true,
+//         state.dealerHand =[],
+//         state.playerHand = [],
+//         state.dealerHandNumVal = [],
+//         state.playerHandNumVal = [],
+//         state.hitCard = [],
+//         state.drawnCard = [],
+//         state.playerCount = 0,
+//         state.dealerCount = 0,
+//         state.bust = false
+//         playerHandEl = document.getElementById('playerHand')
+//         playerHandEl2 = document.getElementById('playerHand2')
+//         playerHitEl = document.getElementById('playerHit')
+//         playerHitEl2 = document.getElementById('playerHit2')
+//         playerHitEl3 = document.getElementById('playerHit3')
+//         dealerHandEl = document.getElementById('dealerHand')
+//         dealerHandEl2 = document.getElementById('dealerHand2')
+//         playerMessage = document.getElementById('playerMessage')
+//         drawnCard 
+//         dealerHandEl3 = document.getElementById('dealerHand3')
+//         dealerHandEl4 = document.getElementById('dealerHand4')
+//         playerMessage = document.getElementById('playerMessage')
 
-    }
+//     }
 
 
 

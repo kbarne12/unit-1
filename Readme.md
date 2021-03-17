@@ -8,6 +8,8 @@ At the start of a Blackjack game, the players and the dealer receive two cards e
 
 The house advantage of this game is derived from several rules that favour the dealer. The most significant of these is that the player must act before the dealer, allowing the player to bust and lose their bet before the dealer plays.
 
+## Background
+I built this browser game because I love playing Blackjack. More inportantly I built this game to gain a better understanding of control flow and JS functionality.
 
 ## Images
 ![This is a alt text.](https://i.imgur.com/cQa2miz.png)
@@ -22,6 +24,6 @@ The house advantage of this game is derived from several rules that favour the d
 6. GitHub
 
 ### Future Enhancement
-Ability to Bet
-Sound and animation
-Multi player
+1. Ability to bet chips
+2. Sound and animation
+3. Multi player
