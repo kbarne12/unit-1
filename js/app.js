@@ -39,6 +39,7 @@ let game = stateGame()
 let currentDeck = state.deck;
 let dealerDrawnCard = []
 let playerCash = 10000
+let betAmount = 0
 /*------------------------ Cached Element References ------------------------*/
 let dealBtn = document.getElementById('btn')
 let stayBtn = document.getElementById('stay')
@@ -53,6 +54,7 @@ let playerMessage = document.getElementById('playerMessage')
 let playerChips = document.getElementById('chips')
 let cashDisplay = document.getElementById('wallet')
 cashDisplay.innerText = playerCash
+let betDisplay = document.getElementById('bet')
 const playerCardSpaces = {
     1: (() => document.getElementById('playerHand'))(),
     2: (() => document.getElementById('playerHand2'))(),
@@ -256,4 +258,28 @@ function clearTable() {
         }
     })
     // removeEventListeners(state)
+}
+
+function placeBet(e) {
+    chip = e.target.id
+    switch (chip) {
+        case 'five':
+            betAmount += 500
+            playerCash -= 500
+            break
+        case 'hundred':
+            betAmount += 100
+            playerCash -= 100
+            break
+        case 'ten':
+            betAmount += 10
+            playerCash -= 10
+            break
+        case 'one':
+            betAmount += 1
+            playerCash -= 1
+            break
+    }
+    betDisplay.innerText = betAmount
+    cashDisplay.innerText = playerCash
 }
