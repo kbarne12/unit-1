@@ -40,16 +40,7 @@ const playerCardSpaces = {
 /*----------------------------- Event Listeners -----------------------------*/
 dealBtn.addEventListener('click', dealCards)
 hitBtn.addEventListener('click', hitFunction)
-stayBtn.addEventListener('click', () => {
-    dealerHandEl2.classList.remove('back-blue')
-    dealerCheck(state.dealerHand)
-    if (dealerTotal < 16) {
-        draw()
-    }
-    busted()
-    isWinner()
-    console.log(dealerTotal)
-})
+stayBtn.addEventListener('click', stayFunction)
 /*-------------------------------- Functions --------------------------------*/
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -72,12 +63,15 @@ function dealToPlayer() {
         playerHandEl2.classList.add('card', state.playerHand[1])
         state.isFirstHand = false
     }
-    for (let i = 0; i< state.playerHand.length; i++) {
-        playerCardLookup(state.playerHand[i])
+    for (let i = 0; i < state.playerHand.length; i++) {
+        playerTotal += cardLookup(state.playerHand[i])
     }
     console.log(playerTotal)
-    console.log('player hand on deal', state.playerHand)
-    console.log('player hand LENGTH', state.playerHand.length)
+}
+function dealerCheck(array) {
+    for (let i = 0; i < array.length; i++) {
+        dealerTotal += cardLookup(array[i])
+    }
 }
 function dealToDealer() {
     for (let i = 0; i < 2; i++) {
@@ -100,135 +94,76 @@ function hitFunction() {
     console.log('LENGTH OF PLAYER HAND', state.playerHand.length)
     let indexTracker = state.playerHand.length
     playerCardSpaces[indexTracker].classList.add('card', state.playerHand[indexTracker - 1])
-    playerCardLookup(drawnCard)
+    playerTotal += cardLookup(drawnCard)
     console.log('PLAYER TOTAL', playerTotal)
 }
-function playerCardLookup(card) {
-    console.log('HITTING', card)
-    let cardValue;
-    if (card === "dA" || card === "hA" || card === "cA" || card === "sA") {
-        cardValue = 11;
-        playerTotal += cardValue
-        console.log('CARD VALUE CHECKER', cardValue)
+function stayFunction() {
+    dealerHandEl2.classList.remove('back-blue')
+    dealerCheck(state.dealerHand)
+    if (dealerTotal < 16) {
+        draw()
     }
-    if (card === "dQ" || card === "hQ" || card === "cQ" || card === "sQ" ||
-        card === "dK" || card === "hK" || card === "cK" || card === "sK" ||
-        card === "dJ" || card === "hJ" || card === "cJ" || card === "sJ" ||
-        card === "d10" || card === "h10" || card === "c10" || card === "s10") {
-        cardValue = 10;
-        playerTotal += cardValue
-        console.log('CARD VALUE CHECKER', cardValue)
-    }
-    if (card === "d09" || card === "h09" || card === "c09" || card === "s09") {
-        cardValue = 9;
-        playerTotal += cardValue
-        console.log('CARD VALUE CHECKER', cardValue)
-    }
-    if (card === "d08" || card === "h08" || card === "c08" || card === "s08") {
-        cardValue = 8;
-        playerTotal += cardValue
-        console.log('CARD VALUE CHECKER', cardValue)
-    }
-    if (card === "d07" || card === "h07" || card === "c07" || card === "s07") {
-        cardValue = 7;
-        playerTotal += cardValue
-        console.log('CARD VALUE CHECKER', cardValue)
-    }
-    if (card === "d06" || card === "h06" || card === "c06" || card === "s06") {
-        cardValue = 6;
-        playerTotal += cardValue
-        console.log('CARD VALUE CHECKER', cardValue)
-    }
-    if (card === "d05" || card === "h05" || card === "c05" || card === "s05") {
-        cardValue = 5;
-        playerTotal += cardValue
-        console.log('CARD VALUE CHECKER', cardValue)
-    }
-    if (card === "d04" || card === "h04" || card === "c04" || card === "s04") {
-        cardValue = 4;
-        playerTotal += cardValue
-        console.log('CARD VALUE CHECKER', cardValue)
-    }
-    if (card === "d03" || card === "h03" || card === "c03" || card === "s03") {
-        cardValue = 3;
-        playerTotal += cardValue
-        console.log('CARD VALUE CHECKER', cardValue)
-    }
-    if (card === "d02" || card === "h02" || card === "c02" || card === "s02") {
-        cardValue = 2;
-        playerTotal += cardValue
-        console.log('CARD VALUE CHECKER', cardValue)
-    }
+    busted()
+    isWinner()
+    console.log(dealerTotal)
 }
-function dealerCardLookup(card) {
+function cardLookup(card) {
     console.log(card)
-    let cardValue;
+    let cardValue
     if (card === "dA" || card === "hA" || card === "cA" || card === "sA") {
         cardValue = 11;
-        dealerTotal += cardValue
-        console.log('DEALER VALUE CHECKER', cardValue)
     }
     if (card === "dQ" || card === "hQ" || card === "cQ" || card === "sQ" ||
         card === "dK" || card === "hK" || card === "cK" || card === "sK" ||
         card === "dJ" || card === "hJ" || card === "cJ" || card === "sJ" ||
         card === "d10" || card === "h10" || card === "c10" || card === "s10") {
         cardValue = 10;
-        dealerTotal += cardValue
-        console.log('DEALER VALUE CHECKER', cardValue)
     }
     if (card === "d09" || card === "h09" || card === "c09" || card === "s09") {
         cardValue = 9;
-        dealerTotal += cardValue
-        console.log('DEALER VALUE CHECKER', cardValue)
     }
     if (card === "d08" || card === "h08" || card === "c08" || card === "s08") {
         cardValue = 8;
-        dealerTotal += cardValue
-        console.log('DEALER VALUE CHECKER', cardValue)
     }
     if (card === "d07" || card === "h07" || card === "c07" || card === "s07") {
         cardValue = 7;
-        dealerTotal += cardValue
-        console.log('DEALER VALUE CHECKER', cardValue)
     }
     if (card === "d06" || card === "h06" || card === "c06" || card === "s06") {
         cardValue = 6;
-        dealerTotal += cardValue
-        console.log('DEALER VALUE CHECKER', cardValue)
     }
     if (card === "d05" || card === "h05" || card === "c05" || card === "s05") {
         cardValue = 5;
-        dealerTotal += cardValue
-        console.log('DEALER VALUE CHECKER', cardValue)
     }
     if (card === "d04" || card === "h04" || card === "c04" || card === "s04") {
         cardValue = 4;
-        dealerTotal += cardValue
-        console.log('DEALER VALUE CHECKER', cardValue)
     }
     if (card === "d03" || card === "h03" || card === "c03" || card === "s03") {
         cardValue = 3;
-        dealerTotal += cardValue
-        console.log('DEALER VALUE CHECKER', cardValue)
     }
     if (card === "d02" || card === "h02" || card === "c02" || card === "s02") {
         cardValue = 2;
-        console.log('DEALER VALUE CHECKER', cardValue)
-        dealerTotal += cardValue
     }
-    console.log('DEALER TOTAL', dealerTotal)
-}
-function dealerCheck(array) {
-    console.log('DEALER HAND BEFORE CHECK', array)
-    for (let i = 0; i < array.length; i++) {
-        dealerCardLookup(array[i])
-    }
+    console.log('CARD VALUE CHECKER', cardValue)
+    return cardValue
 }
 function draw() {
     dealerDrawnCard = currentDeck.pop()
     state.dealerHand.push(dealerDrawnCard)
-    dealerHandEl3.classList.add('card', state.dealerHand2)
+    dealerHandEl3.classList.add('card', state.dealerHand[2])
+    dealerTotal += cardLookup(dealerDrawnCard)
+    setTimeout(() => draw2(), 2000)
+    console.log("draw", dealerTotal)
 }
+function draw2() {
+    if(state.dealerHand.length === 3 && dealerTotal <= 16){
+        dealerDrawnCard2 = currentDeck.pop()
+        state.dealerHand.push(dealerDrawnCard2)
+        dealerHandEl4.classList.add('card', state.dealerHand[3]) 
+        dealerTotal += cardLookup(dealerDrawnCard2)
+        console.log(state.dealerHand)  
+    } 
+}
+
 function isWinner() {
     if (playerTotal >= 21 && dealerTotal >= 21) {
         winner()
