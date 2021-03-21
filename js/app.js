@@ -14,25 +14,25 @@ const state = {
     bust: false,
     draw: false,
     playerTotal: 0,
-    dealerTotal: 0
+    dealerTotal: 0,
+   
 }
-const stateGame = function(){
-    return {
-        isFirstHand: true,
-        dealerHand: [],
-        dealerHand2: [],
-        playerHand: [],
-        dealerHandNumVal: [],
-        playerHandNumVal: [],
-        hitCard: [],
-        drawnCard: [],
-        playerCount: 0,
-        dealerCount: 0,
-        bust: false,
-        draw: false,
-        playerTotal: 0,
-        dealerTotal: 0
-    }
+const stateGame = function stateGame() {
+    state.isFirstHand= true,
+    state.dealerHand= [],
+    state.dealerHand2= [],
+    state.playerHand= [],
+    state.dealerHandNumVal= [],
+    state.playerHandNumVal= [],
+    state.hitCard= [],
+    state.drawnCard= [],
+    state.playerCount= 0,
+    state.dealerCount= 0,
+    state.bust= false,
+    state.draw= false,
+    state.playerTotal= 0,
+    state.dealerTotal= 0
+    
 }
 let game = stateGame()
 //variables-----------------------------------------------------------------------
@@ -219,44 +219,42 @@ function winner() {
     }
 }
 const declareTie = () => {
-    window.alert("You tied with the dealer.")
+    playerMessage.innerText="You tied with the dealer."
     setTimeout(() => {
         clearTable()
-    }, 500)
-    setTimeout(() => {
         stateGame()
-    }, 500)
+    }, 800)
 }
 function awardWin(winner) {
-    window.alert(`${winner} won the hand!`)
-    clearTable()
+    playerMessage.innerText= `${winner} won the hand!`
     setTimeout(() => {
+        clearTable()
         stateGame()
-    }, 500)
+    }, 800)
     
 }
 function busted() {
     if (state.playerTotal > 21) {
         playerMessage.innerText = "Player Busted!!!  Dealer Wins!"
-        clearTable()
         setTimeout(() => {
+            clearTable()
             stateGame()
-        }, 500)
+        }, 800)
     }
     if (state.dealerTotal > 21) {
         playerMessage.innerText = "Dealer Busted!!! Player Wins!"
-        clearTable()
         setTimeout(() => {
+            clearTable()
             stateGame()
-        }, 500)
+        }, 800)
     }
 }
 function clearTable() {
     cardSpaces.forEach(setOfSpaces => {
         for (let div in setOfSpaces){
             setOfSpaces[div].className = ""
-        }
-    })
+        }playerMessage.innerText = ""
+    }) 
     // removeEventListeners(state)
 }
 
