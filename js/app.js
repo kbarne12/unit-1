@@ -49,6 +49,8 @@ let dealerHandEl2 = document.getElementById('dealerHand2')
 let dealerHandEl3 = document.getElementById('dealerHand3')
 let dealerHandEl4 = document.getElementById('dealerHand4')
 let playerMessage = document.getElementById('playerMessage')
+let playerChips = document.getElementById('chips')
+
 const playerCardSpaces = {
     1: (() => document.getElementById('playerHand'))(),
     2: (() => document.getElementById('playerHand2'))(),
@@ -67,6 +69,7 @@ let cardSpaces = [playerCardSpaces, dealerCardSpaces]
 dealBtn.addEventListener('click', dealCards)
 hitBtn.addEventListener('click', hitFunction)
 stayBtn.addEventListener('click', stayFunction)
+
 /*-------------------------------- Functions --------------------------------*/
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
