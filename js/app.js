@@ -73,7 +73,7 @@ let cardSpaces = [playerCardSpaces, dealerCardSpaces]
 dealBtn.addEventListener('click', dealCards)
 hitBtn.addEventListener('click', hitFunction)
 stayBtn.addEventListener('click', stayFunction)
-
+playerChips.addEventListener('click', placeBet)
 /*-------------------------------- Functions --------------------------------*/
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -126,10 +126,10 @@ function hitFunction() {
     state.playerHand.push(drawnCard)
     console.log('LENGTH OF PLAYER HAND', state.playerHand.length)
     let indexTracker = state.playerHand.length
+
     playerCardSpaces[indexTracker].classList.add('card', state.playerHand[indexTracker - 1])
     state.playerTotal += cardLookup(drawnCard)
     console.log('PLAYER TOTAL', state.playerTotal)
-    busted()
 }
 function stayFunction() {
     dealerHandEl2.classList.remove('back-blue')
@@ -138,7 +138,6 @@ function stayFunction() {
         setTimeout(() => draw(), 500)
         setTimeout(() => winner(), 2000)
     }
-    busted()
     setTimeout(() => winner(), 2000)
     
     console.log(state.dealerTotal)
@@ -206,7 +205,7 @@ function draw2() {
 function winner() {
     if (state.playerTotal > 21) {
         awardWin("Dealer")
-        return
+        return 
     } else if (state.dealerTotal > 21 || state.dealerTotal < state.playerTotal) {
         awardWin("You")
         return
@@ -223,37 +222,42 @@ const declareTie = () => {
     setTimeout(() => {
         clearTable()
         stateGame()
-    }, 800)
+    }, 2500)
 }
 function awardWin(winner) {
+    console.log(winner)
     playerMessage.innerText= `${winner} won the hand!`
+    if(winner === 'You') {
+        let winAmount = betAmount
+        playerCash += betAmount
+        playerCash += winAmount
+        console.log(playerCash)
+    }else{
+        playerCash - betAmount
+        console.log(playerCash)
+    }
     setTimeout(() => {
         clearTable()
         stateGame()
-    }, 800)
+    }, 2500)
     
 }
 function busted() {
     if (state.playerTotal > 21) {
-        playerMessage.innerText = "Player Busted!!!  Dealer Wins!"
-        setTimeout(() => {
-            clearTable()
-            stateGame()
-        }, 800)
+        winner()
     }
     if (state.dealerTotal > 21) {
-        playerMessage.innerText = "Dealer Busted!!! Player Wins!"
-        setTimeout(() => {
-            clearTable()
-            stateGame()
-        }, 800)
+        winner()
     }
 }
 function clearTable() {
+    playerMessage.innerText = ""
+    betAmount = 0
+    console.log(betAmount)
     cardSpaces.forEach(setOfSpaces => {
         for (let div in setOfSpaces){
             setOfSpaces[div].className = ""
-        }playerMessage.innerText = ""
+        }
     }) 
     // removeEventListeners(state)
 }
