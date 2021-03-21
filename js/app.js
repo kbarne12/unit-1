@@ -96,15 +96,17 @@ function hitFunction() {
     playerCardSpaces[indexTracker].classList.add('card', state.playerHand[indexTracker - 1])
     playerTotal += cardLookup(drawnCard)
     console.log('PLAYER TOTAL', playerTotal)
+    busted()
 }
 function stayFunction() {
     dealerHandEl2.classList.remove('back-blue')
     dealerCheck(state.dealerHand)
     if (dealerTotal < 16) {
-        draw()
+        setTimeout(() => draw(), 500)
+        setTimeout(() => winner(), 2000)
     }
     busted()
-    isWinner()
+    
     console.log(dealerTotal)
 }
 function cardLookup(card) {
@@ -151,40 +153,56 @@ function draw() {
     state.dealerHand.push(dealerDrawnCard)
     dealerHandEl3.classList.add('card', state.dealerHand[2])
     dealerTotal += cardLookup(dealerDrawnCard)
-    setTimeout(() => draw2(), 2000)
+    setTimeout(() => draw2(), 1000)
     console.log("draw", dealerTotal)
+    busted()
+    
 }
 function draw2() {
-    if(state.dealerHand.length === 3 && dealerTotal <= 16){
+    if(state.dealerHand.length === 3 && dealerTotal < 16){
         dealerDrawnCard2 = currentDeck.pop()
         state.dealerHand.push(dealerDrawnCard2)
         dealerHandEl4.classList.add('card', state.dealerHand[3]) 
         dealerTotal += cardLookup(dealerDrawnCard2)
-        console.log(state.dealerHand)  
-    } 
-}
-
-function isWinner() {
-    if (playerTotal >= 21 && dealerTotal >= 21) {
-        winner()
+        console.log(state.dealerHand) 
+        busted() 
+        
     }
 }
 function winner() {
-    if (playerTotal > dealerTotal) {
-        playerMessage.innerText = "Player Wins!"
+    if (playerTotal > 21) {
+        awardWin("Dealer")
+        return
+    } else if (dealerTotal > 21 || dealerTotal < playerTotal) {
+        awardWin("You")
+        return
+    } else if (dealerTotal === playerTotal){
+        declareTie()
+        return
+    } else {
+        awardWin("Dealer")
+        return
     }
-    if (playerTotal < dealerTotal) {
-        playerMessage.innerText = "Dealer Wins!"
-    }
-    if (playerTotal === dealerTotal) {
-        playerMessage.innerText = "It's a push!"
-    }
+}
+const declareTie = () => {
+    window.alert("You tied with the dealer.")
+    setTimeout(() => {
+        // clearTable()
+    }, 500)
+}
+function awardWin(winner) {
+    window.alert(`${winner} won the hand!`)
+    
+    // clearTable()
+    
 }
 function busted() {
     if (playerTotal > 21) {
         playerMessage.innerText = "Player Busted!!!  Dealer Wins!"
+        // clearTable/reset
     }
     if (dealerTotal > 21) {
         playerMessage.innerText = "Dealer Busted!!! Player Wins!"
+        // clearTable/reset
     }
 }
