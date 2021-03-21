@@ -38,6 +38,7 @@ let game = stateGame()
 //variables-----------------------------------------------------------------------
 let currentDeck = state.deck;
 let dealerDrawnCard = []
+let playerCash = 10000
 /*------------------------ Cached Element References ------------------------*/
 let dealBtn = document.getElementById('btn')
 let stayBtn = document.getElementById('stay')
@@ -50,7 +51,8 @@ let dealerHandEl3 = document.getElementById('dealerHand3')
 let dealerHandEl4 = document.getElementById('dealerHand4')
 let playerMessage = document.getElementById('playerMessage')
 let playerChips = document.getElementById('chips')
-
+let cashDisplay = document.getElementById('wallet')
+cashDisplay.innerText = playerCash
 const playerCardSpaces = {
     1: (() => document.getElementById('playerHand'))(),
     2: (() => document.getElementById('playerHand2'))(),
