@@ -99,7 +99,7 @@ function shuffleCards() {
         shuffleArray(currentDeck);
         state.isFirstHand = false;
     }
-    console.log('current Deck', currentDeck)
+    
 }
 function dealToPlayer() {
     for (let i = 0; i < 2; i++) {
@@ -112,7 +112,6 @@ function dealToPlayer() {
     for (let i = 0; i < state.playerHand.length; i++) {
         state.playerTotal += cardLookup(state.playerHand[i])
     }
-    console.log(state.playerTotal)
 }
 function dealerCheck(array) {
     for (let i = 0; i < array.length; i++) {
@@ -126,7 +125,6 @@ function dealToDealer() {
         dealerHandEl.classList.add('card', state.dealerHand[0])
         dealerHandEl2.classList.add('card', 'back-blue', state.dealerHand[1])
     }
-    console.log('dealer hand', state.dealerHand)
 }
 function dealCards() {
     shuffleCards()
@@ -143,12 +141,10 @@ function dealCards() {
 function hitFunction() {
     drawnCard = currentDeck.pop()
     state.playerHand.push(drawnCard)
-    console.log('LENGTH OF PLAYER HAND', state.playerHand.length)
     let indexTracker = state.playerHand.length
     playerCardSpaces[indexTracker].classList.add('card', state.playerHand[indexTracker - 1])
     state.playerTotal += cardLookup(drawnCard)
     busted()
-    console.log('PLAYER TOTAL', state.playerTotal)
 }
 function stayFunction() {
     dealerHandEl2.classList.remove('back-blue')
@@ -158,11 +154,8 @@ function stayFunction() {
         setTimeout(() => winner(), 2000)
     }
     setTimeout(() => winner(), 2000)
-    
-    console.log(state.dealerTotal)
 }
 function cardLookup(card) {
-    console.log(card)
     let cardValue
     if (card === "dA" || card === "hA" || card === "cA" || card === "sA") {
         cardValue = 11;
@@ -197,7 +190,6 @@ function cardLookup(card) {
     if (card === "d02" || card === "h02" || card === "c02" || card === "s02") {
         cardValue = 2;
     }
-    console.log('CARD VALUE CHECKER', cardValue)
     return cardValue
 }
 function draw() {
@@ -252,16 +244,15 @@ function awardWin(winner) {
         playerCash += betAmount
         playerCash += winAmount
         cashDisplay.innerText = playerCash
-        console.log(playerCash)
+        
     }if(winner === "You tied with the dealer.") {
         playerCash = betAmount + playerCash
         cashDisplay.innerText = playerCash
-        console.log(playerCash)
+        
     }else{
         playerCash -= betAmount
         checkForLoss()
-        // cashDisplay.innerText = playerCash
-        console.log(playerCash)
+        
     }
     setTimeout(() => {
         clearTable()
@@ -273,7 +264,6 @@ function awardWin(winner) {
 function busted() {
     if (state.playerTotal > 21) {
         playerMessage.innerText = "You're Busted"
-        // playerCash -= betAmount
         cashDisplay.innerText = playerCash
     
         setTimeout(() => {
@@ -284,11 +274,7 @@ function busted() {
     }
     if (state.dealerTotal > 21) {
         playerMessage.innerText = "Dealer Busted"
-        // let winAmount = betAmount
-        // playerCash += betAmount
-        // playerCash += winAmount
         cashDisplay.innerText = playerCash
-        // awardWin(winner)
         setTimeout(() => {
             clearTable()
             checkForLoss()
@@ -306,7 +292,6 @@ function clearTable() {
     playerChips.style.opacity = '100'
     dealerHandEl.classList.add('card')
     playerHandEl.classList.add('card')
-    console.log(betAmount)
     cardSpaces.forEach(setOfSpaces => {
         for (let div in setOfSpaces){
             setOfSpaces[div].className = ""
@@ -316,7 +301,7 @@ function clearTable() {
         dealerHandEl.classList.add('card')
         playerHandEl.classList.add('card')
     }) 
-    // removeEventListeners(state)
+    
 }
 
 function placeBet(e) {
@@ -354,9 +339,6 @@ function checkForLoss(){
         dealBtn.style.display = 'none'
         hitBtn.style.display = 'none'
         stayBtn.style.display = 'none'
-        
-        //reset 'would like to play again?'
-        //reset button appears to restart//
     }
 }
 function bet(){

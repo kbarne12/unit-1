@@ -11,6 +11,9 @@ The house advantage of this game is derived from several rules that favour the d
 ## Background
 I built this browser game because I love playing Blackjack. More inportantly I built this game to gain a better understanding of control flow and JS functionality.
 
+## Getting Started
+
+
 ## Images
 ![This is a alt text.](https://i.imgur.com/cQa2miz.png)
 ![This is a alt text.](https://i.imgur.com/vHvQVvk.jpg)
