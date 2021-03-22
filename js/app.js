@@ -54,6 +54,9 @@ let playerMessage = document.getElementById('playerMessage')
 let playerChips = document.getElementById('chips')
 let cashDisplay = document.getElementById('wallet')
 let betMessage = document.getElementById('chip')
+let betBtn = document.getElementById('betChips')
+let playAgBtn = document.getElementById('playagain')
+playAgBtn.style.display = 'none'
 dealBtn.style.opacity = '0'
 stayBtn.style.opacity = '0'
 hitBtn.style.opacity = '0'
@@ -78,6 +81,9 @@ dealBtn.addEventListener('click', dealCards)
 hitBtn.addEventListener('click', hitFunction)
 stayBtn.addEventListener('click', stayFunction)
 playerChips.addEventListener('click', placeBet)
+betBtn.addEventListener('click', bet)
+playAgBtn.addEventListener('click', handlePlayAgain)
+
 /*-------------------------------- Functions --------------------------------*/
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -136,9 +142,9 @@ function hitFunction() {
     state.playerHand.push(drawnCard)
     console.log('LENGTH OF PLAYER HAND', state.playerHand.length)
     let indexTracker = state.playerHand.length
-
     playerCardSpaces[indexTracker].classList.add('card', state.playerHand[indexTracker - 1])
     state.playerTotal += cardLookup(drawnCard)
+    busted()
     console.log('PLAYER TOTAL', state.playerTotal)
 }
 function stayFunction() {
@@ -231,6 +237,7 @@ const declareTie = () => {
     playerMessage.innerText="You tied with the dealer."
     setTimeout(() => {
         clearTable()
+        checkForLoss()
         stateGame()
     }, 2500)
 }
@@ -241,24 +248,50 @@ function awardWin(winner) {
         let winAmount = betAmount
         playerCash += betAmount
         playerCash += winAmount
+        cashDisplay.innerText = playerCash
+        console.log(playerCash)
+    }if(winner === "You tied with the dealer.") {
+        playerCash = betAmount + playerCash
+        cashDisplay.innerText = playerCash
         console.log(playerCash)
     }else{
-        playerCash - betAmount
+        playerCash -= betAmount
+        checkForLoss()
+        // cashDisplay.innerText = playerCash
         console.log(playerCash)
     }
     setTimeout(() => {
         clearTable()
+        checkForLoss()
         stateGame()
     }, 2500)
     
 }
 function busted() {
     if (state.playerTotal > 21) {
-        winner()
+        playerMessage.innerText = "You're Busted"
+        // playerCash -= betAmount
+        cashDisplay.innerText = playerCash
+    
+        setTimeout(() => {
+            clearTable()
+            checkForLoss()
+            stateGame()
+        }, 1000)
     }
     if (state.dealerTotal > 21) {
-        winner()
-    }
+        playerMessage.innerText = "Dealer Busted"
+        // let winAmount = betAmount
+        // playerCash += betAmount
+        // playerCash += winAmount
+        cashDisplay.innerText = playerCash
+        // awardWin(winner)
+        setTimeout(() => {
+            clearTable()
+            checkForLoss()
+            stateGame()
+        }, 1000)
+    } 
 }
 function clearTable() {
     playerMessage.innerText = ""
@@ -299,15 +332,29 @@ function placeBet(e) {
     }
     betDisplay.innerText = betAmount
     cashDisplay.innerText = playerCash
-    betMessage.innerText = ''
-    dealBtn.style.opacity = '100'
-    playerChips.style.opacity = '0'
+    
+    
 
 }
 function checkForLoss(){
-    if(playerCash === 0){
+    if(playerCash <= 0){
         playerMessage.innerText = "Game Over"
-        //removeEventlisteners
+        playAgBtn.style.display = 'block'
+        playerChips.style.display = 'none'
+        dealBtn.style.display = 'none'
+        hitBtn.style.display = 'none'
+        stayBtn.style.display = 'none'
+        
+        //reset 'would like to play again?'
         //reset button appears to restart//
     }
+}
+function bet(){
+    playerChips.style.opacity = '0'
+    dealBtn.style.opacity = '100' 
+    betMessage.innerText = ''
+}
+function handlePlayAgain(){
+    playAgBtn.style.display = 'none'
+    location.reload()
 }
