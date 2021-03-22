@@ -60,7 +60,10 @@ playAgBtn.style.display = 'none'
 dealBtn.style.opacity = '0'
 stayBtn.style.opacity = '0'
 hitBtn.style.opacity = '0'
+betBtn.style.display = 'none'
 cashDisplay.innerText = playerCash
+playerHandEl.style.opacity = '0'
+dealerHandEl.style.opacity = '0'
 let betDisplay = document.getElementById('bet')
 const playerCardSpaces = {
     1: (() => document.getElementById('playerHand'))(),
@@ -129,13 +132,13 @@ function dealCards() {
     shuffleCards()
     dealToPlayer()
     dealToDealer()
-    console.log('PLAYER TOTAL', state.playerTotal)
-    //hit and stay buttons appear//
+    dealerHandEl.style.opacity = '100'
+    playerHandEl.style.opacity = '100'
+    dealBtn.style.opacity = '0'
     setTimeout(() => {
         stayBtn.style.opacity = '100'
-        hitBtn.style.opacity = '100' 
-        dealBtn.style.opacity = '0'  
-    }, 1000)
+        hitBtn.style.opacity = '100'   
+    }, 500)
 }
 function hitFunction() {
     drawnCard = currentDeck.pop()
@@ -301,11 +304,17 @@ function clearTable() {
     hitBtn.style.opacity = '0'
     betMessage.innerText = 'Place Your Bet!'
     playerChips.style.opacity = '100'
+    dealerHandEl.classList.add('card')
+    playerHandEl.classList.add('card')
     console.log(betAmount)
     cardSpaces.forEach(setOfSpaces => {
         for (let div in setOfSpaces){
             setOfSpaces[div].className = ""
         }
+        playerHandEl.style.opacity = '0'
+        dealerHandEl.style.opacity = '0'
+        dealerHandEl.classList.add('card')
+        playerHandEl.classList.add('card')
     }) 
     // removeEventListeners(state)
 }
@@ -332,6 +341,7 @@ function placeBet(e) {
     }
     betDisplay.innerText = betAmount
     cashDisplay.innerText = playerCash
+    betBtn.style.display = 'block'
     
     
 
@@ -353,6 +363,7 @@ function bet(){
     playerChips.style.opacity = '0'
     dealBtn.style.opacity = '100' 
     betMessage.innerText = ''
+    betBtn.style.display = 'none'
 }
 function handlePlayAgain(){
     playAgBtn.style.display = 'none'

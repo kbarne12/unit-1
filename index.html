@@ -11,38 +11,53 @@
     <title>Black Jack</title>
 </head>
 <body>
-    
-    <h2>Dealer</h2>
-    <Main id="dealer">
-        <div id="dealerHand" class=></div>
-        <div id="dealerHand2" class=></div>
-        <div id="dealerHand3" class=></div>
-        <div id="dealerHand4" class=></div>
-    </Main>
-    <section id='playerMessage'></section>
-    <button id="playagain">Play Again</button>
-    <h2>Player </h2>
-    <main id="player">   
-        <div id="playerHand" class=></div>
-        <div id="playerHand2" class=></div>
-        <div id="playerHit" class=></div>
-        <div id="playerHit2" class=></div>
-        <div id="playerHit3" class=></div>
-    </main> 
+    <div class="head">
+        <h3>Dealer</h3>
+        <Main id="dealer">
+            <div id="dealerHand" class='card'></div>
+            <div id="dealerHand2" class=></div>
+            <div id="dealerHand3" class=></div>
+            <div id="dealerHand4" class=></div>
+        </Main>
+        <section id='playerMessage'></section>
+        <button id="playagain">Play Again</button>
+        <h3>Player </h3>
+        <main id="player">   
+            <div id="playerHand" class='card'></div>
+            <div id="playerHand2" class=></div>
+            <div id="playerHit" class=></div>
+            <div id="playerHit2" class=></div>
+            <div id="playerHit3" class=></div>
+        </main> 
+        <div id="button">   
+               <button id="btn">Deal</button>
+               <button id="stay">Stay</button>
+               <button id="hit">Hit</button>
+           </div>
+    </div>
+    <div class="betArea">
+
         <div id="chips"><p id="chip">Place Your Bet!</p>
             <button id="five">500</button>
             <button id="hundred">100</button>
             <button id="ten">10</button>
             <button id="one">1</button>
+            
+        </div>
+        <div>
             <button id="betChips">Bet</button>
         </div>
-        <h1 id="bet"></h1>
-        <h1 id="wallet"></h1>
+    </div>
+        <section class="gambling">
+            <div class="playerBet">
+                <h2>Player's Bet: $</h2>
+                <h2 id="bet"></h2>
+            </div>
+            <div class="playerWallet">
+                <h2>Player's Cash: $</h2> 
+                <h2 id="wallet"></h2>
+            </div>
+        </section>
        
-        <div id="button">   
-            <button id="btn">Deal</button>
-            <button id="stay">Stay</button>
-            <button id="hit">Hit</button>
-        </div>
 </body>
 </html>

@@ -1,5 +1,5 @@
 body {
-    display:grid;
+    /* display:flex; */
     justify-content: center;
     background-image: url("https://i.imgur.com/TcflNzV.jpg");
     background-repeat: no-repeat;
@@ -18,12 +18,21 @@ body {
     grid-row: 3;
     
 }
+.head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
 button {
 	border-radius: 4px;
 	text-align: center;
 	margin-bottom: 40px;
+    font-size: 10px ;
+}
+#bet, #wallet{
+    
     font-size: 15px ;
-
 }
 #btn{
     background-color: green;
@@ -37,9 +46,13 @@ button {
     background: rgba(250,90,90,1);
 	background: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(250,90,90,1)), to(rgba(232,81,81,1)));
 	background: -webkit-linear-gradient(rgba(250,90,90,1) 0%, rgba(232,81,81,1) 100%);
-
 }
- #playerMessage{
+#betChips {
+    display: flex;
+    background-color: greenyellow;
+    justify-content: center;
+}
+#playerMessage{
 font-size: 40px;
 font-weight: bolder;
 color: red;
@@ -48,6 +61,39 @@ font-style: italic;
 h2{
     color: orangered;
     font-weight: bolder;
+}
+.playerWallet {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px;
+}
+.betArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid green;
+    padding: 1px;
+} 
+.gambling {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1px;
+    justify-content: space-around;
+    border: 1px solid green;
+    font-size: 12px;
+}
+.playerBet {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1px;
+    font-size: 12
+}
+#chip {
+    font-size: 12px;
 }
  
 
