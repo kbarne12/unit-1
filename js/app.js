@@ -53,6 +53,9 @@ let dealerHandEl4 = document.getElementById('dealerHand4')
 let playerMessage = document.getElementById('playerMessage')
 let playerChips = document.getElementById('chips')
 let cashDisplay = document.getElementById('wallet')
+dealBtn.style.opacity = '0'
+stayBtn.style.opacity = '0'
+hitBtn.style.opacity = '0'
 cashDisplay.innerText = playerCash
 let betDisplay = document.getElementById('bet')
 const playerCardSpaces = {
@@ -120,6 +123,12 @@ function dealCards() {
     dealToPlayer()
     dealToDealer()
     console.log('PLAYER TOTAL', state.playerTotal)
+    //hit and stay buttons appear//
+    setTimeout(() => {
+        stayBtn.style.opacity = '100'
+        hitBtn.style.opacity = '100' 
+        dealBtn.style.opacity = '0'  
+    }, 1000)
 }
 function hitFunction() {
     drawnCard = currentDeck.pop()
@@ -284,4 +293,13 @@ function placeBet(e) {
     }
     betDisplay.innerText = betAmount
     cashDisplay.innerText = playerCash
+    playerChips.innerText = ''
+    dealBtn.style.opacity = '100'
+}
+function checkForLoss(){
+    if(playerCash === 0){
+        playerMessage.innerText = "Game Over"
+        //removeEventlisteners
+        //reset button appears to restart//
+    }
 }
