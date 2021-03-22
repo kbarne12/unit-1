@@ -12,7 +12,8 @@ The house advantage of this game is derived from several rules that favour the d
 I built this browser game because I love playing Blackjack. More inportantly I built this game to gain a better understanding of control flow and JS functionality.
 
 ## Getting Started
-
+Here is the link to play BlackJack keno-blackJack.surge.sh
+You start the game by placing a bet and let your BlackJack journey begin. If you were to lose just click the 'Play Again' button for another round.
 
 ## Images
 ![This is a alt text.](https://i.imgur.com/cQa2miz.png)
@@ -25,8 +26,20 @@ I built this browser game because I love playing Blackjack. More inportantly I b
 4. VSCode
 5. Surge
 6. GitHub
+7. imgur
+8. Zsh 5.8 with OH My Zsh
+9. 
+   
+### Special Thanks
+1. Instructors, TAs and peers from the General Assembly SEIR-EC-2-22 cohort for collaboration in developing this app. 
+2. I used https://imgur.com/ to host the background image for my app. 
+3. I used  [Markdown Live Preview](https://markdownlivepreview.com/) to format this README.md
+4. This app was deployed using [Surge.sh](https://surge.sh/)
+5. [Marty](https://github.com/mhsmith321) was incredible in helping me to understand control flow.
+6. [Hunter](https://github.com/whlong1) was a huge help in the debugging process.
+   
 
 ### Future Enhancement
-1. Ability to bet chips
-2. Sound and animation
-3. Multi player
+1. Sound and animation
+2. Multi player
+3. The ability to split cards
