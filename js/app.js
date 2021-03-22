@@ -53,6 +53,7 @@ let dealerHandEl4 = document.getElementById('dealerHand4')
 let playerMessage = document.getElementById('playerMessage')
 let playerChips = document.getElementById('chips')
 let cashDisplay = document.getElementById('wallet')
+let betMessage = document.getElementById('chip')
 dealBtn.style.opacity = '0'
 stayBtn.style.opacity = '0'
 hitBtn.style.opacity = '0'
@@ -262,6 +263,11 @@ function busted() {
 function clearTable() {
     playerMessage.innerText = ""
     betAmount = 0
+    betDisplay.innerText = ''
+    stayBtn.style.opacity = '0'
+    hitBtn.style.opacity = '0'
+    betMessage.innerText = 'Place Your Bet!'
+    playerChips.style.opacity = '100'
     console.log(betAmount)
     cardSpaces.forEach(setOfSpaces => {
         for (let div in setOfSpaces){
@@ -293,8 +299,10 @@ function placeBet(e) {
     }
     betDisplay.innerText = betAmount
     cashDisplay.innerText = playerCash
-    playerChips.innerText = ''
+    betMessage.innerText = ''
     dealBtn.style.opacity = '100'
+    playerChips.style.opacity = '0'
+
 }
 function checkForLoss(){
     if(playerCash === 0){
