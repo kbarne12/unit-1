@@ -16,7 +16,7 @@ Here is the link to play BlackJack keno-blackJack.surge.sh
 You start the game by placing a bet and let your BlackJack journey begin. If you were to lose just click the 'Play Again' button for another round.
 
 ## Images
-[Imgur](https://i.imgur.com/TcflNzV.jpg)
+[Imgur](https://i.imgur.com/ZyPkgrt.png)
 [Imgur](https://i.imgur.com/ZyPkgrt.png)
 
 ### Technologies Used: 
